@@ -2,7 +2,7 @@
 
 A machine learning web application that detects toxic, obscene, and insulting content in text using a neural network model. Built with TensorFlow/Keras and Flask.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -67,7 +67,7 @@ python app.py
 3. Adjust confidence threshold (0.0-1.0)
 4. Click "Analyze" to get toxicity scores
 
-## 📊 What It Detects
+## What It Detects
 
 The system analyzes text for three types of harmful content:
 
@@ -77,7 +77,7 @@ The system analyzes text for three types of harmful content:
 
 Each category gets a confidence score (0.0-1.0) and risk assessment.
 
-## 🏗️ System Architecture
+## System Architecture
 
 ### Text Processing Pipeline
 
@@ -122,7 +122,7 @@ Output Layer: 3 units + Sigmoid (toxic, obscene, insult)
 
 The model shows excellent generalization with high validation accuracy and minimal overfitting.
 
-## ⚙️ Configuration
+## Configuration
 
 ### Confidence Thresholds
 
@@ -137,7 +137,7 @@ The model shows excellent generalization with high validation accuracy and minim
 - **HIGH**: Max score 0.5-0.8
 - **VERY HIGH**: Max score > 0.8
 
-## 🔧 Technical Details
+## Technical Details
 
 ### Dependencies
 
@@ -215,7 +215,7 @@ Content-Type: application/json
 }
 ```
 
-## 🎯 Use Cases
+## Use Cases
 
 - **Content Moderation**: Filter toxic comments on platforms
 - **Social Media**: Detect harmful content in posts
@@ -223,7 +223,7 @@ Content-Type: application/json
 - **Educational Platforms**: Monitor student interactions
 - **Online Communities**: Maintain healthy discussion environments
 
-## 🛠️ Development
+## Development
 
 ### Installing Development Dependencies
 
@@ -249,7 +249,7 @@ pytest
 black .
 ```
 
-## 🚨 Error Handling
+## Error Handling
 
 The application includes robust error handling for:
 - Missing model files
@@ -257,7 +257,7 @@ The application includes robust error handling for:
 - Model loading failures
 - Network connectivity issues
 
-## 📝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -265,10 +265,10 @@ The application includes robust error handling for:
 4. Test thoroughly
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This project is open source and available under the MIT License.
 
 ---
 
-**⚠️ Important Note**: This system is designed for educational and research purposes. Always review flagged content manually for critical applications. 
+**Important Note**: This system is designed for educational and research purposes. Always review flagged content manually for critical applications. 
