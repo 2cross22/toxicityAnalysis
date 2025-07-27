@@ -13,7 +13,7 @@ A machine learning web application that detects toxic, obscene, and insulting co
 ## Dataset
 
 **Important**: The training dataset is required for model training. Download it from:
-- [Dataset Link] (Add your dataset link here)
+- [Get It Here](https://drive.google.com/file/d/1TMSVTKbGcVHXjsqss9jgLrmlMuNJZ30W/view?usp=sharing)
 
 ### How to Add the Dataset:
 1. Download the dataset file from the link above
