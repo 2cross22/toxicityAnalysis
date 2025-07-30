@@ -200,11 +200,11 @@ def api_analyze():
 
 def main():
     """Entry point for the bias-predictor command"""
-    print("🚀 Starting Flask server...")
-    print("📱 Access the webapp at: http://localhost:5000")
-    print("📱 Or from another device at: http://0.0.0.0:5000")
+    print(" Starting Flask server...")
+    print(" Access the webapp at: http://localhost:5000")
+    print(" Or from another device at: http://0.0.0.0:5000")
     if not models_loaded:
-        print("⚠️  WARNING: Models failed to load - predictions won't work!")
+        print("⚠  WARNING: Models failed to load - predictions won't work!")
         print("   The webapp will still start, but you'll see error messages when trying to analyze text.")
     print("=" * 50)
     try:
@@ -212,9 +212,9 @@ def main():
         port = int(os.environ.get('PORT', 5000))
         app.run(debug=False, host='0.0.0.0', port=port)
     except KeyboardInterrupt:
-        print("\n👋 Server stopped by user")
+        print("\n Server stopped by user")
     except Exception as e:
-        print(f"\n❌ Server error: {e}")
+        print(f"\n Server error: {e}")
 
 if __name__ == '__main__':
     main() 
