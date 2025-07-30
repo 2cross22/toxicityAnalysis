@@ -30,26 +30,9 @@ source venv/bin/activate
 pip install -e .
 ```
 
-### Step 2: Download Dataset
+### Step 2: Run the Web Application
 
-1. Download the training dataset from [Google Drive](https://drive.google.com/file/d/1TMSVTKbGcVHXjsqss9jgLrmlMuNJZ30W/view?usp=sharing)
-2. Place `dataset.csv` in the project root directory (same folder as `trainModel.py`)
-3. Ensure the file is named exactly `dataset.csv`
-
-### Step 3: Train the Model
-
-```bash
-# Train the neural network model
-python trainModel.py
-```
-
-**Training Details:**
-- Takes 10-20 minutes depending on your computer
-- Shows real-time progress with accuracy metrics
-- Saves `toxic_model_nn.keras` and `tfidf_vectorizer.pkl`
-- Final accuracy: ~97%+ on validation set
-
-### Step 4: Run the Web Application
+The project includes pre-trained models (`toxic_model_nn.keras` and `tfidf_vectorizer.pkl`), so no training is required!
 
 ```bash
 # Start the Flask web server
@@ -60,7 +43,7 @@ python app.py
 - **Local**: http://127.0.0.1:5000
 - **Network**: http://0.0.0.0:5000
 
-### Step 5: Use the Application
+### Step 3: Use the Application
 
 1. Open your browser to `http://127.0.0.1:5000`
 2. Enter text in the input field
@@ -163,26 +146,30 @@ This project uses `pyproject.toml` for modern Python project management:
 ```
 toxicity-detection-system/
 ├── app.py                 # Flask web application
-├── trainModel.py          # Model training script
-├── dataset.csv           # Training dataset (download separately)
+├── trainModel.py          # Model training script (optional)
+├── dataset.csv           # Training dataset (included)
 ├── templates/
 │   └── index.html        # Web interface
 ├── pyproject.toml        # Project configuration
 ├── render.yaml           # Render deployment config
 └── .gitignore           # Git ignore rules
 
-# Generated files (after training):
+# Pre-trained models (included):
 ├── toxic_model_nn.keras  # Trained neural network model
 └── tfidf_vectorizer.pkl  # TF-IDF vectorizer
 ```
 
-### Training Process
+### Training Process (Optional)
+
+If you want to retrain the model with your own data:
 
 1. **Data Loading**: Load and preprocess the toxic comments dataset
 2. **Text Cleaning**: Remove URLs, special characters, normalize case
 3. **Feature Extraction**: TF-IDF vectorization with 10,000 features
 4. **Model Training**: 20 epochs with early stopping
 5. **Model Saving**: Save in Keras native format (.keras)
+
+**Note**: The project includes pre-trained models, so training is not required for immediate use.
 
 ### API Usage
 
