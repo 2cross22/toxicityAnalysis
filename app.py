@@ -153,7 +153,18 @@ def index():
 
 @app.route('/test')
 def test():
-    return "Server is working! Models loaded: " + str(model is not None and vectorizer is not None)
+    model_status = "✓" if model is not None else "✗"
+    vectorizer_status = "✓" if vectorizer is not None else "✗"
+    models_loaded_status = "✓" if models_loaded else "✗"
+    
+    return f"""
+    <h2>Server Status</h2>
+    <p>Server is working!</p>
+    <p>Model: {model_status}</p>
+    <p>Vectorizer: {vectorizer_status}</p>
+    <p>Models loaded flag: {models_loaded_status}</p>
+    <p>Models loaded: {model is not None and vectorizer is not None}</p>
+    """
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
@@ -162,6 +173,10 @@ def analyze():
     
     if not comment:
         return render_template('index.html', error="Please enter a comment to analyze")
+    
+    # Check if models are loaded
+    if not model or not vectorizer:
+        return render_template('index.html', error="Models are still loading. Please wait a moment and try again.")
     
     try:
         result = analyze_comment(comment, confidence_threshold)
