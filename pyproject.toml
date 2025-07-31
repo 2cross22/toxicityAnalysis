@@ -7,7 +7,7 @@ name = "toxicity-detection-system"
 version = "1.0.0"
 description = "A machine learning web application that detects toxic, obscene, and insulting content in text using a neural network model"
 readme = "README.md"
-requires-python = ">=3.11,<3.14"
+requires-python = ">=3.11,<3.13"
 license = {text = "MIT"}
 
 keywords = ["machine-learning", "toxicity-detection", "flask", "tensorflow", "nlp"]
