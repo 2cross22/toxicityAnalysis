@@ -27,18 +27,9 @@ def load_models():
         
         print("Loading neural network model (this may take a moment)...")
         import tensorflow as tf
-        import signal
         
         # Suppress TensorFlow warnings for cleaner output
         tf.get_logger().setLevel('ERROR')
-        
-        # Set a timeout for model loading
-        def timeout_handler(signum, frame):
-            raise TimeoutError("Model loading timed out")
-        
-        # Set 60 second timeout
-        signal.signal(signal.SIGALRM, timeout_handler)
-        signal.alarm(60)
         
         try:
             # Try loading Keras native format first (recommended)
@@ -58,11 +49,9 @@ def load_models():
                 print("ERROR: No model file found! Please run trainModel.py first.")
                 print("Looking for: toxic_model_nn.keras or toxic_model_nn.h5")
                 return False
-        except TimeoutError:
-            print("ERROR: Model loading timed out after 60 seconds")
+        except Exception as e:
+            print(f"ERROR loading model: {e}")
             return False
-        finally:
-            signal.alarm(0)  # Cancel the alarm
         
         return True
         
