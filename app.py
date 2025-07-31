@@ -32,24 +32,42 @@ def load_models():
         tf.get_logger().setLevel('ERROR')
         
         try:
-            # Force retrain on Railway due to version incompatibility
-            print("Forcing model retraining on Railway...")
-            from trainModel import train_and_save_model
-            print("Retraining model...")
-            train_and_save_model()
-            # Try loading the newly trained model
+            # Try loading existing models with compatibility fixes
             if os.path.exists("toxic_model_nn.h5"):
-                model = load_model("toxic_model_nn.h5", compile=False)
-                model.compile(loss='binary_crossentropy', 
-                             optimizer='adam', 
-                             metrics=['accuracy'])
-                print("✓ Model retrained and loaded successfully")
-                return True
+                print("Loading from H5 format (.h5)...")
+                try:
+                    model = load_model("toxic_model_nn.h5", compile=False)
+                    # Recompile with current TensorFlow version
+                    model.compile(loss='binary_crossentropy', 
+                                 optimizer='adam', 
+                                 metrics=['accuracy'])
+                    print("✓ Model loaded from .h5 format and recompiled")
+                except Exception as h5_error:
+                    print(f"H5 load failed: {h5_error}")
+                    print("Trying Keras format...")
+                    if os.path.exists("toxic_model_nn.keras"):
+                        try:
+                            model = load_model("toxic_model_nn.keras")
+                            print("✓ Model loaded from .keras format")
+                        except Exception as keras_error:
+                            print(f"Keras load failed: {keras_error}")
+                            return False
+                    else:
+                        print("ERROR: No model files found!")
+                        return False
+            elif os.path.exists("toxic_model_nn.keras"):
+                print("Loading from Keras format (.keras)...")
+                try:
+                    model = load_model("toxic_model_nn.keras")
+                    print("✓ Model loaded from .keras format")
+                except Exception as keras_error:
+                    print(f"Keras load failed: {keras_error}")
+                    return False
             else:
-                print("ERROR: Model retraining failed")
+                print("ERROR: No model files found!")
                 return False
         except Exception as e:
-            print(f"ERROR retraining model: {e}")
+            print(f"ERROR loading model: {e}")
             return False
         
         return True
