@@ -35,8 +35,21 @@ def load_models():
             # Try loading Keras native format first (recommended)
             if os.path.exists("toxic_model_nn.keras"):
                 print("Loading from Keras native format (.keras)...")
-                model = load_model("toxic_model_nn.keras")
-                print("✓ Model loaded from .keras format")
+                try:
+                    model = load_model("toxic_model_nn.keras")
+                    print("✓ Model loaded from .keras format")
+                except Exception as keras_error:
+                    print(f"Keras format failed: {keras_error}")
+                    print("Trying H5 format as fallback...")
+                    if os.path.exists("toxic_model_nn.h5"):
+                        model = load_model("toxic_model_nn.h5", compile=False)
+                        model.compile(loss='binary_crossentropy', 
+                                     optimizer='adam', 
+                                     metrics=['accuracy'])
+                        print("✓ Model loaded from .h5 format and recompiled")
+                    else:
+                        print("ERROR: No H5 model file found!")
+                        return False
             elif os.path.exists("toxic_model_nn.h5"):
                 print("Loading from H5 format (.h5)...")
                 model = load_model("toxic_model_nn.h5", compile=False)
@@ -51,7 +64,26 @@ def load_models():
                 return False
         except Exception as e:
             print(f"ERROR loading model: {e}")
-            return False
+            print("Attempting to retrain model...")
+            try:
+                # Import training function
+                from trainModel import train_and_save_model
+                print("Retraining model...")
+                train_and_save_model()
+                # Try loading again
+                if os.path.exists("toxic_model_nn.h5"):
+                    model = load_model("toxic_model_nn.h5", compile=False)
+                    model.compile(loss='binary_crossentropy', 
+                                 optimizer='adam', 
+                                 metrics=['accuracy'])
+                    print("✓ Model retrained and loaded successfully")
+                    return True
+                else:
+                    print("ERROR: Model retraining failed")
+                    return False
+            except Exception as retrain_error:
+                print(f"ERROR retraining model: {retrain_error}")
+                return False
         
         return True
         
