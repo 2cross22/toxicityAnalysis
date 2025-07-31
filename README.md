@@ -2,6 +2,12 @@
 
 A machine learning web application that detects toxic, obscene, and insulting content in text using a neural network model. Built with TensorFlow/Keras and Flask.
 
+## Live Demo
+
+**Try it out:** [LIVE DEMO!!](https://web-production-4f45f.up.railway.app/analyze)
+
+The application is now live and ready to analyze text for toxicity! Simply enter any text and get instant toxicity scores for toxic, obscene, and insult content.
+
 ## Quick Start
 
 ### Prerequisites
