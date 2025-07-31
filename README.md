@@ -4,7 +4,7 @@ A machine learning web application that detects toxic, obscene, and insulting co
 
 ## Live Demo
 
-**Try it out:** [LIVE DEMO!!](https://web-production-4f45f.up.railway.app/analyze)
+**Try it out:** [LIVE DEMO!!](https://web-production-4f45f.up.railway.app/)
 
 The application is now live and ready to analyze text for toxicity! Simply enter any text and get instant toxicity scores for toxic, obscene, and insult content.
 
